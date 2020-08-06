@@ -5,9 +5,7 @@
 version: 2
 jobs:
   build:
-    branches:
-      only:
-        - /feature-.*/
+    
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
@@ -26,6 +24,7 @@ jobs:
     steps:
       - checkout
 
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -41,7 +40,10 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn test
+      - run: mvn testbranches:
+        only:
+          - /feature-.*/
+
 
       - run:
           name: Save test results
