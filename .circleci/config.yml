@@ -14,6 +14,9 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
+    branches:
+       only:
+         - master  
 
     working_directory: ~/repo
 
@@ -40,10 +43,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn testbranches:
-        only:
-          - /feature-.*/
-
+      - run: mvn test
 
       - run:
           name: Save test results
