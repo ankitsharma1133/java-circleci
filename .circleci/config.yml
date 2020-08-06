@@ -44,16 +44,9 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-workflows:
-  version: 2
-  main:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only: master
-              
-      # run tests!
+
+
+    # run tests!
       - run: mvn test
 
       - run:
