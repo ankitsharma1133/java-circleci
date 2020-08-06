@@ -2,14 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-workflows:
-  version: 2
-  main:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only: master
+
 
 version: 2
 jobs:
@@ -51,6 +44,15 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+              
       # run tests!
       - run: mvn test
 
